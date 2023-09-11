@@ -1,15 +1,26 @@
 import React from 'react';
+import {useEffect, useState} from 'react';
+import createBoard from './CreateBoard';
+//import Cell from './Cell'
+
 
 const Board = () => {
   const [grid, setGrid] = useState([])
 
   useEffect(() => {
     function freshBoard(){
-      const newBoard = creatBoard();
+      const newBoard = createBoard(5,5,10);
       console.log(newBoard)
+      setGrid(newBoard)
     }
-  }, [])
-  return <h1>Board</h1>
-}
+    freshBoard();
+  }, []);
 
+  return grid.board.map((singleRow) => {
+    return singleRow.map((singleBlock) => {
+      return <div>{singleBlock.value}</div>
+    })
+  })
+}
 export default Board;
+

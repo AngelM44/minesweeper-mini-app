@@ -1,4 +1,4 @@
-export default createBoard (row, col, bombs) => {
+const createBoard = (row, col, bombs) => {
   let board = []
   let mineLocation = []
   //creates a blank board which is an array of arrays (matrix)
@@ -49,8 +49,13 @@ export default createBoard (row, col, bombs) => {
       if (
         roww > 0 &&
         coll < col - 1 &&
-        board[row -1][coll + 1].value === 'X'
+        board[roww -1][coll + 1].value === 'X'
       ){
+        board[roww][coll].value++
+      }
+
+      //Right
+      if (coll < col -1 && board[roww][coll + 1].value === 'X'){
         board[roww][coll].value++
       }
 
@@ -72,13 +77,13 @@ export default createBoard (row, col, bombs) => {
       if (
         roww < row - 1 &&
         coll > 0 &&
-        board[row + 1][coll-1].value === 'X'
+        board[roww + 1][coll-1].value === 'X'
       ){
         board[roww][coll].value++
       }
 
       //Left
-      if (coll > 0 && board[row][coll - 1].value === 'X'){
+      if (coll > 0 && board[roww][coll - 1].value === 'X'){
         board[roww][coll].value++
       }
 
@@ -90,3 +95,5 @@ export default createBoard (row, col, bombs) => {
   }
   return {board, mineLocation}
 }
+
+export default createBoard;
