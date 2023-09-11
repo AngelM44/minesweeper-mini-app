@@ -1,8 +1,13 @@
 import React from 'react';
+import updateFlag from './Board'
 
 export default function Cell ({details}){
   return (
-    <div style={style.cellStyle}>
+    <div
+    onContextMenu={() => updateFlag()}
+    style={style.cellStyle}
+    onClick={() => console.log(details)}
+    >
       {details.value}
     </div>
   )
